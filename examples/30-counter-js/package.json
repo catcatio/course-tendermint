@@ -1,0 +1,16 @@
+{
+  "name": "30-counter-js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "counter.js",
+  "scripts": {
+    "start": "node ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "abci": "^3.0.2",
+    "debug": "^3.1.0"
+  }
+}
