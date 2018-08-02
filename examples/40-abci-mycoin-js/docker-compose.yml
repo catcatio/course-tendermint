@@ -1,0 +1,122 @@
+version: '3'
+services:
+  tm-node0:
+    container_name: node0
+    image: "tendermint/tendermint"
+    ports:
+      - "26656-26657:26656-26657"
+    environment:
+      - ID=0
+      - LOG=$${LOG:-tendermint.log}
+    volumes:
+      - ./mytestnet/node0:/tendermint
+    command: node --proxy_app=tcp://abci0:26658
+    depends_on:
+      - mycoin-abci0
+    networks:
+      localnet:
+        ipv4_address: 192.167.10.2
+
+  tm-node1:
+    container_name: node1
+    image: "tendermint/tendermint"
+    ports:
+      - "26659-26660:26656-26657"
+    environment:
+      - ID=0
+      - LOG=$${LOG:-tendermint.log}
+    volumes:
+      - ./mytestnet/node1:/tendermint
+    command: node --proxy_app=tcp://abci1:26658
+    depends_on:
+      - mycoin-abci1
+    networks:
+      localnet:
+        ipv4_address: 192.167.10.3
+
+  tm-node2:
+    container_name: node2
+    image: "tendermint/tendermint"
+    ports:
+      - "26661-26662:26656-26657"
+    environment:
+      - ID=0
+      - LOG=$${LOG:-tendermint.log}
+    volumes:
+      - ./mytestnet/node2:/tendermint
+    command: node --proxy_app=tcp://abci2:26658
+    depends_on:
+      - mycoin-abci2
+    networks:
+      localnet:
+        ipv4_address: 192.167.10.4
+
+  tm-node3:
+    container_name: node3
+    image: "tendermint/tendermint"
+    ports:
+      - "26663-26664:26656-26657"
+    environment:
+      - ID=0
+      - LOG=$${LOG:-tendermint.log}
+    volumes:
+      - ./mytestnet/node3:/tendermint
+    command: node --proxy_app=tcp://abci3:26658
+    depends_on:
+      - mycoin-abci3
+    networks:
+      localnet:
+        ipv4_address: 192.167.10.5
+
+  mycoin-abci0:
+    container_name: abci0
+    image: catcatio/abci-mycoin
+    build:
+      context: .
+      dockerfile: abci.Dockerfile
+    command: npm run start
+    networks:
+      localnet:
+        ipv4_address: 192.167.10.6
+
+  mycoin-abci1:
+    container_name: abci1
+    image: catcatio/abci-mycoin
+    build:
+      context: .
+      dockerfile: abci.Dockerfile
+    command: npm run start
+    networks:
+      localnet:
+        ipv4_address: 192.167.10.7
+
+  mycoin-abci2:
+    container_name: abci2
+    image: catcatio/abci-mycoin
+    build:
+      context: .
+      dockerfile: abci.Dockerfile
+    command: npm run start
+    networks:
+      localnet:
+        ipv4_address: 192.167.10.8
+
+  mycoin-abci3:
+    container_name: abci3
+    image: catcatio/abci-mycoin
+    build:
+      context: .
+      dockerfile: abci.Dockerfile
+    command: npm run start
+    networks:
+      localnet:
+        ipv4_address: 192.167.10.9
+
+networks:
+  localnet:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+      -
+        subnet: 192.167.10.0/16
