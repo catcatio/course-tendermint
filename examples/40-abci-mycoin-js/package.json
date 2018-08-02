@@ -1,0 +1,19 @@
+{
+  "name": "abci-mycoin-js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/server.js",
+  "scripts": {
+    "tendermint": "tendermint node",
+    "start": "node ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "abci": "^3.0.2",
+    "crypto": "^1.0.1",
+    "debug": "^3.1.0",
+    "deterministic-json": "^1.0.5"
+  }
+}
