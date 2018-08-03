@@ -18,6 +18,7 @@ npm run start
 
 ```shell
 # on another terminal
+curl -s "localhost:26657/broadcast_tx_commit?tx=0x00"
 curl -s "localhost:26657/broadcast_tx_commit?tx=0x01"
 curl -s "localhost:26657/broadcast_tx_commit?tx=0x02"
 curl -s "localhost:26657/broadcast_tx_commit?tx=0x02"
