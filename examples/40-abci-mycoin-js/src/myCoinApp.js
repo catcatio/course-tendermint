@@ -111,7 +111,10 @@ module.exports = (initialState) => {
       return txError
     }
 
-    return { code: 0, value: `${state[tx.user] ? state[tx.user].balance : 'N/A'}` }
+    const responseValue = `${state[tx.user] ? state[tx.user].balance : 'N/A'}`
+    const valueBase64 = Buffer.from(responseValue).toString('base64')
+
+    return { code: 0, value: valueBase64 }
   }
 
   return {
